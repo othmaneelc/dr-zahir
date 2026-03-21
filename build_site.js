@@ -60,10 +60,10 @@ const headHtml = (title) => `<!DOCTYPE html>
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
         /* Navbar */
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 15px 0; transition: var(--transition); background: var(--navy); border-bottom: 1px solid var(--glass-border); overflow: hidden; }
-        .navbar.scrolled { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); padding: 10px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; }
-        .nav-brand img { height: 45px; width: auto; object-fit: contain; display: block; }
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 10px 0; transition: var(--transition); background: var(--navy); border-bottom: 1px solid var(--glass-border); overflow: visible; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); padding: 5px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; height: 80px; }
+        .nav-brand img { height: 90px; width: auto; object-fit: contain; display: block; margin-top: -5px; }
         .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: nowrap; }
         .nav-links a { color: var(--white); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; white-space: nowrap; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -74,14 +74,17 @@ const headHtml = (title) => `<!DOCTYPE html>
         .hamburger span { width: 25px; height: 2px; background: var(--white); transition: 0.3s; }
         
         @media (max-width: 1200px) {
-            .nav-phone { display: none; }
+            .nav-phone a { display: none; }
         }
         
         @media (max-width: 992px) {
-            .nav-links { display: none; }
+            .nav-links { display: none; z-index: 99; }
             .hamburger { display: flex; }
-            /* Mobile menu styles */
-            .nav-links.mobile-active { display: flex; position: absolute; top: 100%; left: 0; width: 100%; background: var(--navy-light); flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--gold); }
+            .nav-links.mobile-active { display: flex !important; position: absolute; top: 100%; left: 0; width: 100%; background: var(--navy-light); flex-direction: column; padding: 30px 0; border-bottom: 2px solid var(--gold); border-top: 1px solid var(--gold); gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        }
+        @media (max-width: 600px) {
+            .nav-brand img { height: 75px; }
+            .nav-container { height: 70px; }
         }
         
         /* Shared Styles */
@@ -157,9 +160,9 @@ const headHtml = (title) => `<!DOCTYPE html>
         .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,164,86,0.1), transparent 70%); top: -100px; left: -100px; animation: float 10s ease-in-out infinite; }
         .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,80,160,0.15), transparent 70%); bottom: -150px; right: -150px; animation: float 12s ease-in-out infinite reverse; }
         
-        .nav-brand img { height: 45px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
-        .navbar.scrolled .nav-brand img { height: 40px; }
-        @media (max-width: 992px) { .nav-brand img { height: 38px; } }
+        .nav-brand img { height: 90px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
+        .navbar.scrolled .nav-brand img { height: 75px; }
+        @media (max-width: 600px) { .nav-brand img { height: 75px; } }
         
         .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .service-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, var(--gold-glow), transparent 70%); opacity: 0; transition: 0.4s; pointer-events: none; }
