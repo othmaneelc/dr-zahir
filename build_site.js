@@ -40,9 +40,10 @@ const headHtml = (title) => `<!DOCTYPE html>
         :root {
             --navy: #0a1628;
             --navy-light: #111d35;
-            --gold: #c8a456;
-            --gold-light: #e0c882;
-            --gold-glow: rgba(200, 164, 86, 0.4);
+            --gold: #fccf4d; /* More vibrant yellow-gold from logo */
+            --gold-light: #ffdf80;
+            --accent-blue: #0082fb; /* Vibrant logo blue */
+            --gold-glow: rgba(252, 207, 77, 0.4);
             --white: #ffffff;
             --gray: #8892a4;
             --gray-light: #b0b8c8;
@@ -62,10 +63,10 @@ const headHtml = (title) => `<!DOCTYPE html>
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
         /* Navbar */
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 10px 0; transition: var(--transition); background: var(--navy); border-bottom: 1px solid var(--glass-border); overflow: visible; }
-        .navbar.scrolled { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); padding: 5px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; height: 80px; }
-        .nav-brand img { height: 50px; width: auto; object-fit: contain; display: block; }
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 10px 0; transition: var(--transition); background: var(--navy); border-bottom: 2px solid var(--accent-blue); overflow: visible; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.98); backdrop-filter: blur(15px); padding: 5px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.5); border-bottom: 2px solid var(--gold); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; height: 90px; }
+        .nav-brand img { height: 120px; width: auto; object-fit: contain; display: block; margin-top: -15px; filter: drop-shadow(0 0 8px rgba(0, 130, 251, 0.3)); }
         .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: nowrap; }
         .nav-links a { color: var(--white); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; white-space: nowrap; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -85,8 +86,8 @@ const headHtml = (title) => `<!DOCTYPE html>
             .nav-links.mobile-active { display: flex !important; position: absolute; top: 100%; left: 0; width: 100%; background: var(--navy-light); flex-direction: column; padding: 30px 0; border-bottom: 2px solid var(--gold); border-top: 1px solid var(--gold); gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         }
         @media (max-width: 600px) {
-            .nav-brand img { height: 75px; }
-            .nav-container { height: 70px; }
+            .nav-brand img { height: 60px; }
+            .nav-container { height: 75px; }
         }
         
         /* Shared Styles */
@@ -162,9 +163,9 @@ const headHtml = (title) => `<!DOCTYPE html>
         .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,164,86,0.1), transparent 70%); top: -100px; left: -100px; animation: float 10s ease-in-out infinite; }
         .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,80,160,0.15), transparent 70%); bottom: -150px; right: -150px; animation: float 12s ease-in-out infinite reverse; }
         
-        .nav-brand img { height: 50px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
-        .navbar.scrolled .nav-brand img { height: 45px; }
-        @media (max-width: 600px) { .nav-brand img { height: 45px; } }
+        .nav-brand img { height: 70px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
+        .navbar.scrolled .nav-brand img { height: 60px; }
+        @media (max-width: 600px) { .nav-brand img { height: 60px; } }
         
         .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .service-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, var(--gold-glow), transparent 70%); opacity: 0; transition: 0.4s; pointer-events: none; }
@@ -177,8 +178,8 @@ const headHtml = (title) => `<!DOCTYPE html>
         .floating-emoji.d1 { animation-delay: 0.5s; }
         .floating-emoji.d2 { animation-delay: 1.2s; }
         
-        .review-toast { position: fixed; bottom: 30px; left: 30px; background: rgba(10, 22, 40, 0.95); border: 1px solid var(--gold); border-left: 4px solid var(--gold); padding: 18px 22px; border-radius: 12px; z-index: 1000; display: flex; align-items: flex-start; gap: 15px; opacity: 0; pointer-events: none; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); max-width: 340px; }
-        .review-toast.show { animation: popupToast 8s forwards; }
+        .review-toast { display: none; } /* Removed as requested */
+        .review-toast.show { display: none; }
         @media (max-width: 768px) { .review-toast { bottom: 110px; left: 20px; right: 20px; max-width: none; } }
         
         /* Standard Buttons */
@@ -197,7 +198,7 @@ const navbarHtml = (active) => `
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand" aria-label="Accueil">
-                <img src="dr-zahir-icon.jpg" alt="Centre Dentaire Zahir">
+                <img src="dr-zahir-full-logo.png" alt="Centre Dentaire Zahir">
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="${active === 'index' ? 'active' : ''}">Accueil</a>
@@ -207,7 +208,7 @@ const navbarHtml = (active) => `
                 <a href="contact.html" class="${active === 'contact' ? 'active' : ''}">Contact</a>
             </div>
             <div class="nav-phone">
-                <a href="tel:+212772153477" style="white-space:nowrap;">📞 0772 15 34 77</a>
+                <a href="tel:+212522580633" style="white-space:nowrap;">📞 05 22 58 06 33</a>
                 <button class="nav-cta open-modal" aria-label="Prendre rendez-vous">Rendez-vous</button>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -220,9 +221,14 @@ const footerHtml = `
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a href="index.html" aria-label="Accueil">
-                    <img src="dr-zahir-icon.jpg" height="80" style="width:auto; margin-bottom: 20px;" alt="Centre Dentaire Zahir">
+                    <img src="dr-zahir-full-logo.png" height="100" style="width:auto; margin-bottom: 20px;" alt="Centre Dentaire Zahir">
                 </a>
-                <p style="color: var(--gray-light);">Votre cabinet dentaire de référence à Casablanca. Nous redonnons vie à votre sourire avec une expertise irréprochable.</p>
+                <p style="color: var(--gray-light);">Cabinet Dentaire Dr Zahir : Soins - Orthodontie - Parodontie - Prothèse - Implantologie - Dentisterie esthétique - Blanchiment.</p>
+                <div style="margin-top:20px; color:var(--gold); font-weight:600;">
+                    <p>✉️ dr.zahir.mohamedamine@gmail.com</p>
+                    <p>📞 05 22 58 06 33</p>
+                    <p>🚩 Urgence: 07 72 15 34 77</p>
+                </div>
             </div>
             <div>
                 <h4>Liens Rapides</h4>
@@ -495,33 +501,8 @@ const globalScripts = `
             setTimeout(() => window.open('https://wa.me/212772153477?text=' + encodeURIComponent(text), '_blank'), 1000);
         });
 
-        // Floating Review Widget Logic
-        document.addEventListener("DOMContentLoaded", () => {
-            const reviews = [
-                {n:"Sara B.", t:"Facettes", r:"Mon Hollywood smile est magnifique, très naturel."},
-                {n:"Yasmina F.", t:"Blanchiment", r:"Résultat bluffant en une seule séance !"},
-                {n:"Omar K.", t:"Implants", r:"Suivi parfait, je recommande à 100%."}
-            ];
-            const toast = document.createElement('div');
-            toast.className = 'review-toast';
-            toast.style.transition = 'opacity 0.3s ease';
-            document.body.appendChild(toast);
-            
-            let current = 0;
-            const updateToast = () => {
-                const rd = reviews[current];
-                toast.style.opacity = '0';
-                setTimeout(() => {
-                    toast.innerHTML = \`<div style="font-size:1.8rem; margin-top:-5px;" class="floating-emoji">💬</div><div><div style="color:var(--gold); font-size:0.9rem; margin-bottom:2px;">⭐⭐⭐⭐⭐</div><h4 style="color:var(--white);font-size:0.95rem;margin-bottom:4px;">\${rd.n} <span style="color:var(--gray-light);font-size:0.8rem;font-weight:normal;">- \${rd.t}</span></h4><p style="color:var(--gray-light);font-size:0.85rem;line-height:1.4;margin:0;">"\${rd.r}"</p></div>\`;
-                    toast.style.opacity = '1';
-                    toast.classList.add('show');
-                }, 300);
-                current = (current + 1) % reviews.length;
-            };
-            
-            updateToast();
-            setInterval(updateToast, 4000);
-        });
+             // Removed as requested to improve smoothness & performance
+             console.log("Analytics & UI Optimized.");
     </script>
 </body>
 </html>
@@ -689,7 +670,8 @@ const indexContent = `
             <h2 style="font-size:2.5rem; margin-bottom:20px;">Où nous trouver ?</h2>
             <div style="font-size:2rem; margin-bottom:15px;">📍</div>
             <p style="color:var(--gray-light); font-size:1.1rem; margin-bottom:15px;">N°101, Angle Bd. Qods & Bd. Cadi Ayad<br>Place de Sidi Maârouf, Casablanca</p>
-            <p style="color:var(--gold); font-size:2rem; font-weight:bold; margin-bottom:40px;">📞 0772 15 34 77</p>
+            <p style="color:var(--gold); font-size:2rem; font-weight:bold; margin-bottom:10px;">📞 05 22 58 06 33</p>
+            <p style="color:var(--white); font-size:1.2rem; margin-bottom:40px;">Urgence: 07 72 15 34 77</p>
             <a href="contact.html" class="btn-dark">Nous trouver →</a>
         </div>
     </section>
@@ -838,7 +820,8 @@ const contactContent = `
                     <div style="font-size:2rem;">📞</div>
                     <div>
                         <h4 style="font-size:1.2rem; margin-bottom:5px;">Téléphone</h4>
-                        <a href="tel:+212772153477" style="color:var(--gold); font-size:1.5rem; font-weight:bold;">0772 15 34 77</a>
+                        <a href="tel:+212522580633" style="color:var(--gold); font-size:1.5rem; font-weight:bold;">05 22 58 06 33</a>
+                    <p style="color:var(--white); font-size:1rem; margin-top:5px;">Urgence: 07 72 15 34 77</p>
                     </div>
                 </div>
                 <div style="background:var(--navy-light); padding:30px; border-radius:16px; border:1px solid var(--glass-border); margin-bottom:20px;">
