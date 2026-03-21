@@ -11,6 +11,7 @@ const filesToRename = {
     'celebrity dr zahir.jpg': 'celebrity-dr-zahir.jpg',
     'testimonial zahir.jpg': 'testimonial-zahir.jpg',
     'dr zahir testimonial.jpg': 'dr-zahir-testimonial.jpg',
+    'dr.zahir logo.jpg': 'dr-zahir-icon.jpg',
     'dr.zahir full logo.png': 'dr-zahir-full-logo.png'
 };
 
@@ -34,6 +35,7 @@ const headHtml = (title) => `<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Jost:wght@300..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Jost:wght@300..700&display=swap" rel="stylesheet"></noscript>
+    <script defer src="/_vercel/insights/script.js"></script>
     <style>
         :root {
             --navy: #0a1628;
@@ -63,7 +65,7 @@ const headHtml = (title) => `<!DOCTYPE html>
         .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 10px 0; transition: var(--transition); background: var(--navy); border-bottom: 1px solid var(--glass-border); overflow: visible; }
         .navbar.scrolled { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); padding: 5px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; height: 80px; }
-        .nav-brand img { height: 90px; width: auto; object-fit: contain; display: block; margin-top: -5px; }
+        .nav-brand img { height: 50px; width: auto; object-fit: contain; display: block; }
         .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: nowrap; }
         .nav-links a { color: var(--white); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; white-space: nowrap; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
@@ -160,9 +162,9 @@ const headHtml = (title) => `<!DOCTYPE html>
         .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,164,86,0.1), transparent 70%); top: -100px; left: -100px; animation: float 10s ease-in-out infinite; }
         .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,80,160,0.15), transparent 70%); bottom: -150px; right: -150px; animation: float 12s ease-in-out infinite reverse; }
         
-        .nav-brand img { height: 90px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
-        .navbar.scrolled .nav-brand img { height: 75px; }
-        @media (max-width: 600px) { .nav-brand img { height: 75px; } }
+        .nav-brand img { height: 50px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
+        .navbar.scrolled .nav-brand img { height: 45px; }
+        @media (max-width: 600px) { .nav-brand img { height: 45px; } }
         
         .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .service-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, var(--gold-glow), transparent 70%); opacity: 0; transition: 0.4s; pointer-events: none; }
@@ -195,7 +197,7 @@ const navbarHtml = (active) => `
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand" aria-label="Accueil">
-                <img src="dr-zahir-full-logo.png" alt="Centre Dentaire Zahir">
+                <img src="dr-zahir-icon.jpg" alt="Centre Dentaire Zahir">
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="${active === 'index' ? 'active' : ''}">Accueil</a>
@@ -218,7 +220,7 @@ const footerHtml = `
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a href="index.html" aria-label="Accueil">
-                    <img src="dr-zahir-full-logo.png" height="100" style="width:auto; margin-bottom: 20px;" alt="Centre Dentaire Zahir">
+                    <img src="dr-zahir-icon.jpg" height="80" style="width:auto; margin-bottom: 20px;" alt="Centre Dentaire Zahir">
                 </a>
                 <p style="color: var(--gray-light);">Votre cabinet dentaire de référence à Casablanca. Nous redonnons vie à votre sourire avec une expertise irréprochable.</p>
             </div>
