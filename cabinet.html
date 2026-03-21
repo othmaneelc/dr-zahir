@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Cabinet | Centre Dentaire Zahir</title>
+    <meta name="description" content="Centre Dentaire Zahir à Casablanca – Soins dentaires d'excellence pour toute la famille.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Jost:wght@300..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Jost:wght@300..700&display=swap" rel="stylesheet"></noscript>
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #111d35;
+            --gold: #c8a456;
+            --gold-light: #e0c882;
+            --gold-glow: rgba(200, 164, 86, 0.4);
+            --white: #ffffff;
+            --gray: #8892a4;
+            --gray-light: #b0b8c8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --heading: 'Playfair Display', serif;
+            --body: 'Jost', sans-serif;
+            --overlay: rgba(10, 22, 40, 0.85);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--body); color: var(--white); background: var(--navy); line-height: 1.6; overflow-x: hidden; padding-top: 80px; }
+        h1, h2, h3, h4 { font-family: var(--heading); font-weight: 600; line-height: 1.2; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navbar */
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 100; padding: 15px 0; transition: var(--transition); background: var(--navy); border-bottom: 1px solid var(--glass-border); overflow: hidden; }
+        .navbar.scrolled { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); padding: 10px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; }
+        .nav-brand img { height: 45px; width: auto; object-fit: contain; display: block; }
+        .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: nowrap; }
+        .nav-links a { color: var(--white); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .nav-phone { display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--white); white-space: nowrap; font-size: 0.9rem; }
+        .nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 20px; border-radius: 30px; font-weight: 600; transition: var(--transition); cursor: pointer; border: none; font-size: 0.9rem; white-space: nowrap; }
+        .nav-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 15px var(--gold-glow); }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--white); transition: 0.3s; }
+        
+        @media (max-width: 1200px) {
+            .nav-phone { display: none; }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            /* Mobile menu styles */
+            .nav-links.mobile-active { display: flex; position: absolute; top: 100%; left: 0; width: 100%; background: var(--navy-light); flex-direction: column; padding: 20px 0; border-bottom: 1px solid var(--gold); }
+        }
+        
+        /* Shared Styles */
+        .section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+        .section-title p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 20px auto 0; border-radius: 2px; }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Hero Banners */
+        .page-hero { background: var(--navy-light); padding: 80px 0 60px; text-align: center; border-bottom: 1px solid var(--glass-border); }
+        .page-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold); margin-bottom: 15px; }
+        .page-hero p { font-size: 1.2rem; color: var(--gray-light); max-width: 800px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.95rem; color: var(--gray); margin-top: 20px; }
+        .breadcrumb a { color: var(--white); transition: 0.3s; }
+        .breadcrumb a:hover { color: var(--gold); }
+        
+        /* Footer */
+        .footer { background: var(--navy-light); padding: 80px 0 30px; border-top: 1px solid var(--glass-border); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr; gap: 40px; margin-bottom: 50px; }
+        .footer-brand img { height: 55px; width: auto; margin-bottom: 20px; }
+        .footer h4 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a { color: var(--gray); transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid var(--glass-border); padding-top: 25px; text-align: center; color: var(--gray); font-size: 0.9rem; }
+        
+        /* Floating */
+        .float-btn { position: fixed; bottom: 30px; z-index: 90; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: 0.3s; }
+        .float-btn.hidden { opacity: 0; visibility: hidden; transform: translateY(20px); }
+        .float-wa { right: 30px; background: #25d366; color: white; font-size: 1.8rem; animation: pulse-wa 2s infinite; }
+        .float-phone { left: 30px; background: var(--gold); color: var(--navy); font-size: 1.8rem; animation: pulse-phone 2s infinite; }
+        @keyframes pulse-wa { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        @keyframes pulse-phone { 0% { box-shadow: 0 0 0 0 rgba(200,164,86,0.6); } 70% { box-shadow: 0 0 0 15px rgba(200,164,86,0); } 100% { box-shadow: 0 0 0 0 rgba(200,164,86,0); } }
+        
+        /* Modal */
+        .modal { position: fixed; inset: 0; background: var(--overlay); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.4s; padding: 20px; backdrop-filter: blur(5px); }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .booking-box { width: 100%; max-width: 520px; border-radius: 20px; background: var(--navy); border-top: 4px solid var(--gold); padding: 25px; position: relative; text-align: center; }
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; background: none; border: none; cursor: pointer; z-index: 10; }
+        .step { display: none; }
+        .step.active { display: block; animation: slideIn 0.3s forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .service-btn { background: var(--navy-light); border: 1px solid var(--glass-border); padding: 15px; border-radius: 12px; color: var(--white); cursor: pointer; }
+        .service-btn:hover, .service-btn.selected { border-color: var(--gold); }
+        .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .time-btn { background: var(--navy-light); border: 1px solid var(--glass-border); padding: 12px; border-radius: 10px; color: var(--white); cursor: pointer; }
+        .time-btn.selected { background: var(--gold); color: var(--navy); }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; color: var(--gray-light); }
+        .form-group input, .form-group textarea { width: 100%; background: var(--navy-light); border: 1px solid var(--glass-border); padding: 12px; border-radius: 8px; color: var(--white); }
+        .btn-submit { background: var(--gold); color: var(--navy); width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; }
+        
+        /* Checkmark */
+        .checkmark { width: 80px; height: 80px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #4CAF50; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #4CAF50; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 50px #4CAF50; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+        
+        /* Alive Animations & Effects */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        @keyframes float-delay { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes glow { 0% { box-shadow: 0 0 10px var(--gold-glow); } 50% { box-shadow: 0 0 30px var(--gold-glow); } 100% { box-shadow: 0 0 10px var(--gold-glow); } }
+        
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; z-index: 1; pointer-events: none; }
+        .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(200,164,86,0.1), transparent 70%); top: -100px; left: -100px; animation: float 10s ease-in-out infinite; }
+        .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(30,80,160,0.15), transparent 70%); bottom: -150px; right: -150px; animation: float 12s ease-in-out infinite reverse; }
+        
+        .nav-brand img { height: 45px; width: auto; object-fit: contain; display: block; border: none; background: none; transition: height 0.3s; }
+        .navbar.scrolled .nav-brand img { height: 40px; }
+        @media (max-width: 992px) { .nav-brand img { height: 38px; } }
+        
+        .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, var(--gold-glow), transparent 70%); opacity: 0; transition: 0.4s; pointer-events: none; }
+        .service-card:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 25px var(--gold-glow); border-color: var(--gold); }
+        .service-card:hover::before { opacity: 1; }
+        .service-card .icon-float { transition: 0.4s; }
+        .service-card:hover .icon-float { transform: scale(1.2) rotate(5deg); }
+        
+        .floating-emoji { display: inline-block; animation: float 4s ease-in-out infinite; }
+        .floating-emoji.d1 { animation-delay: 0.5s; }
+        .floating-emoji.d2 { animation-delay: 1.2s; }
+        
+        .review-toast { position: fixed; bottom: 30px; left: 30px; background: rgba(10, 22, 40, 0.95); border: 1px solid var(--gold); border-left: 4px solid var(--gold); padding: 18px 22px; border-radius: 12px; z-index: 1000; display: flex; align-items: flex-start; gap: 15px; opacity: 0; pointer-events: none; backdrop-filter: blur(10px); box-shadow: 0 15px 35px rgba(0,0,0,0.6); max-width: 340px; }
+        .review-toast.show { animation: popupToast 8s forwards; }
+        @media (max-width: 768px) { .review-toast { bottom: 110px; left: 20px; right: 20px; max-width: none; } }
+        
+        /* Standard Buttons */
+        .btn-large { padding: 18px 40px; border-radius: 40px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: var(--transition); border: none; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background: var(--gold); color: var(--navy); }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-3px); }
+        .btn-dark { background: var(--navy-light); color: var(--gold); border: 1px solid var(--gold); padding: 15px 30px; border-radius: 30px; transition: 0.3s; }
+        .btn-dark:hover { background: var(--gold); color: var(--navy); }
+        .mobile-hide { display: block; }
+        @media (max-width: 1100px) { .mobile-hide { display: none; } }
+    </style>
+</head>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="Accueil">
+                <img src="dr-zahir-full-logo.png" alt="Centre Dentaire Zahir" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="">Accueil</a>
+                <a href="services.html" class="">Services</a>
+                <a href="cabinet.html" class="active">Le Cabinet</a>
+                <a href="avis.html" class="">Avis</a>
+                <a href="contact.html" class="">Contact</a>
+            </div>
+            <div class="nav-phone">
+                <a href="tel:+212772153477" style="white-space:nowrap;">📞 0772 15 34 77</a>
+                <button class="nav-cta open-modal" aria-label="Prendre rendez-vous">Rendez-vous</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div class="container" style="padding-top:60px;">
+            <h1>Notre Cabinet</h1>
+            <p>Découvrez un espace pensé pour votre confort et équipé de technologies de pointe.</p>
+            <div class="breadcrumb"><a href="index.html">Accueil</a> &gt; Le Cabinet</div>
+        </div>
+    </header>
+    <section class="section" style="background:var(--navy);">
+        <div class="container">
+            <!-- Full About Dr Zahir -->
+            <div style="display:grid; grid-template-columns:1fr 2fr; gap:50px; align-items:center; background:var(--navy-light); padding:40px; border-radius:20px; border:1px solid var(--glass-border); margin-bottom:80px;" class="animate-on-scroll">
+                <img src="dr-zahir-photo.jpg" alt="Dr Zahir" style="border-radius:12px; width:100%; border:2px solid var(--gold);" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                <div>
+                    <h2 style="color:var(--gold); margin-bottom:15px; font-size:2rem;">Dr. Mohamed Amine Zahir</h2>
+                    <h4 style="color:var(--white); margin-bottom:15px;">Chirurgien-Dentiste, Implantologue</h4>
+                    <p style="color:var(--gray-light); font-size:1.1rem; margin-bottom:15px;">Diplômé des meilleures facultés, le Dr Zahir allie passion et perfectionnisme. Son approche humaine et rassurante transforme votre visite chez le dentiste en une expérience sereine et sans douleur.</p>
+                    <p style="color:var(--gray-light); font-size:1.1rem;">Toujours à la pointe des nouvelles technologies, il participe régulièrement à des congrès internationaux pour vous offrir les soins les plus innovants.</p>
+                </div>
+            </div>
+            
+            <h2 style="text-align:center; margin:0 0 40px; font-size:2.5rem;" class="animate-on-scroll">Galerie du Cabinet</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px; margin-bottom:80px;">
+                <img src="dr-zahirphoto-2.jpg" alt="Cabinet Accueil" style="border-radius:12px; height:250px; width:100%; object-fit:cover; border:1px solid var(--glass-border);" class="animate-on-scroll" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                <img src="zahir-pphoto.jpg" alt="Salle de Soins" style="border-radius:12px; height:250px; width:100%; object-fit:cover; border:1px solid var(--glass-border);" class="animate-on-scroll" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                <img src="celebrity-dr-zahir.jpg" alt="Patient Satisfaction" style="border-radius:12px; height:250px; width:100%; object-fit:cover; border:1px solid var(--glass-border);" class="animate-on-scroll" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                <img src="testimonial-zahir.jpg" alt="Résultats" style="border-radius:12px; height:250px; width:100%; object-fit:cover; border:1px solid var(--glass-border);" class="animate-on-scroll" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                <img src="dr-zahir-testimonial.jpg" alt="Consultation en direct" style="border-radius:12px; height:250px; width:100%; object-fit:cover; border:1px solid var(--glass-border);" class="animate-on-scroll" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+            </div>
+
+            <div class="section-title animate-on-scroll"><h2>Nos Engagements</h2><div class="gold-line"></div></div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+                <div style="background:var(--navy-light); padding:30px; border-radius:16px; border:1px solid var(--glass-border); text-align:center;" class="animate-on-scroll">
+                    <div style="font-size:3rem; margin-bottom:15px;">🛡️</div><h3 style="margin-bottom:10px;">Hygiène Absolue</h3><p style="color:var(--gray-light);">Stérilisation classe B.</p>
+                </div>
+                <div style="background:var(--navy-light); padding:30px; border-radius:16px; border:1px solid var(--glass-border); text-align:center;" class="animate-on-scroll">
+                    <div style="font-size:3rem; margin-bottom:15px;">💎</div><h3 style="margin-bottom:10px;">Matériaux Premium</h3><p style="color:var(--gray-light);">Traçabilité à 100%.</p>
+                </div>
+                <div style="background:var(--navy-light); padding:30px; border-radius:16px; border:1px solid var(--glass-border); text-align:center;" class="animate-on-scroll">
+                    <div style="font-size:3rem; margin-bottom:15px;">⏱️</div><h3 style="margin-bottom:10px;">Ponctualité</h3><p style="color:var(--gray-light);">Zéro temps d'attente.</p>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-top:60px;" class="animate-on-scroll">
+                <h3 style="font-size:2rem; margin-bottom:20px;">Découvrez nos espaces</h3>
+                <button class="btn-large open-modal btn-primary">Prendre RDV pour visiter</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="footer-trigger">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" aria-label="Accueil">
+                    <img src="dr-zahir-full-logo.png" height="100" style="width:auto; margin-bottom: 20px;" alt="Centre Dentaire Zahir" loading="lazy" onerror="this.onerror=null;this.style.display='none';this.parentElement.style.background='#111d35';">
+                </a>
+                <p style="color: var(--gray-light);">Votre cabinet dentaire de référence à Casablanca. Nous redonnons vie à votre sourire avec une expertise irréprochable.</p>
+            </div>
+            <div>
+                <h4>Liens Rapides</h4>
+                <div class="footer-links">
+                    <a href="services.html">Nos Services</a>
+                    <a href="cabinet.html">Le Cabinet</a>
+                    <a href="avis.html">Avis Patients</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <div class="footer-links">
+                    <a href="tel:+212772153477">📞 0772 15 34 77</a>
+                    <a href="https://wa.me/212772153477" target="_blank">💬 WhatsApp</a>
+                    <a href="https://maps.google.com/maps?q=33.5731,-7.5898" target="_blank">📍 Voir sur Google Maps</a>
+                    <a href="https://www.instagram.com/centre_dentaire_zahir/?hl=en" target="_blank">📸 Instagram</a>
+                    <a href="https://www.facebook.com/CentreDentaireZAHIR/" target="_blank">👍 Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            © 2026 Centre Dentaire Zahir — Tous droits réservés | Développé par <a href="https://mixagenci.com" style="color:var(--gold);">Mix Agenci</a>
+        </div>
+    </footer>
+    
+    <a href="tel:+212772153477" class="float-btn float-phone" aria-label="Appeler">📞</a>
+    <a href="https://wa.me/212772153477" class="float-btn float-wa" target="_blank" aria-label="WhatsApp" style="text-decoration:none; display:flex; align-items:center; justify-content:center;">💬</a>
+
+    <div class="modal" id="bookingModal">
+        <div class="booking-box">
+            <button class="modal-close" id="closeModal">×</button>
+            <div class="modal-header">
+                <button id="bookBack" style="background:none;border:none;color:var(--gold);font-size:1.5rem;display:none;cursor:pointer;">&larr;</button>
+                <div id="stepDots" style="display:flex; gap:8px; margin:0 auto;">
+                    <span class="dot active" style="width:8px;height:8px;background:var(--gold);border-radius:50%;"></span>
+                    <span class="dot" style="width:8px;height:8px;background:var(--glass-border);border-radius:50%;"></span>
+                    <span class="dot" style="width:8px;height:8px;background:var(--glass-border);border-radius:50%;"></span>
+                    <span class="dot" style="width:8px;height:8px;background:var(--glass-border);border-radius:50%;"></span>
+                </div>
+                <div style="width:24px; visibility:hidden;"></div>
+            </div>
+            
+            <div class="step step-1 active">
+                <h3 style="color:var(--white);">1. Choisissez un service</h3>
+                <div class="service-grid">
+                    <button class="service-btn" data-service="Implants">🦷<br>Implants</button>
+                    <button class="service-btn" data-service="Blanchiment">✨<br>Blanchiment</button>
+                    <button class="service-btn" data-service="Facettes">💎<br>Facettes</button>
+                    <button class="service-btn" data-service="Orthodontie">😁<br>Orthodontie</button>
+                    <button class="service-btn" data-service="Détartrage">🪥<br>Détartrage</button>
+                    <button class="service-btn" data-service="Couronnes">👑<br>Couronnes</button>
+                    <button class="service-btn" data-service="Caries">🩺<br>Soins de caries</button>
+                    <button class="service-btn" data-service="Extraction">💉<br>Extraction</button>
+                </div>
+            </div>
+            
+            <div class="step step-2">
+                <h3 style="color:var(--white);">2. Choisissez une date</h3>
+                <div style="background:var(--navy-light); padding:15px; border-radius:12px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:var(--gold); font-weight:600;">
+                        <button id="prevMonth" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:1.2rem;">&larr;</button>
+                        <span id="monthYearDisplay"></span>
+                        <button id="nextMonth" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:1.2rem;">&rarr;</button>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(7, 1fr); color:var(--gray); font-size:0.85rem; margin-bottom:10px;">
+                        <span>Lu</span><span>Ma</span><span>Me</span><span>Je</span><span>Ve</span><span>Sa</span><span>Di</span>
+                    </div>
+                    <div id="calGrid" style="display:grid; grid-template-columns:repeat(7, 1fr); gap:5px;"></div>
+                </div>
+            </div>
+            
+            <div class="step step-3">
+                <h3 style="color:var(--white);">3. Choisissez l'heure</h3>
+                <div class="time-grid">
+                    <button class="time-btn" data-time="09h00">09h00</button>
+                    <button class="time-btn" data-time="10h00">10h00</button>
+                    <button class="time-btn" data-time="11h00">11h00</button>
+                    <button class="time-btn" data-time="14h00">14h00</button>
+                    <button class="time-btn" data-time="15h00">15h00</button>
+                    <button class="time-btn" data-time="16h00">16h00</button>
+                    <button class="time-btn" data-time="17h00">17h00</button>
+                    <button class="time-btn" data-time="18h00">18h00</button>
+                </div>
+            </div>
+            
+            <div class="step step-4">
+                <h3 style="color:var(--white);">4. Vos informations</h3>
+                <div class="form-group">
+                    <label>Nom complet *</label>
+                    <input type="text" id="patientName" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone *</label>
+                    <input type="tel" id="patientPhone" placeholder="06XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Message (optionnel)</label>
+                    <textarea id="patientMessage" rows="2" placeholder="Notes additionnelles"></textarea>
+                </div>
+                <button class="btn-submit" id="submitBooking">Confirmer le rendez-vous</button>
+            </div>
+            
+            <div class="step step-5">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h3 style="color:var(--white); margin:20px 0;">Demande envoyée !</h3>
+                <p style="color:var(--gray-light); margin-bottom:20px;">Nous vous contacterons dans l'heure.</p>
+                <div style="display:flex; gap:10px;">
+                    <button id="closeFinalBtn" style="flex:1; padding:12px; border-radius:8px; border:1px solid var(--glass-border); background:none; color:var(--white); cursor:pointer;">Fermer</button>
+                    <a href="tel:+212772153477" style="flex:1; padding:12px; border-radius:8px; background:#4CAF50; color:white; font-weight:bold; cursor:pointer;">📞 Appeler</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger
+        const ham = document.getElementById('hamburger');
+        const links = document.getElementById('navLinks');
+        if (ham && links) {
+            ham.addEventListener('click', () => links.classList.toggle('mobile-active'));
+            links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('mobile-active')));
+        }
+
+        // IntersectionObserver for scroll items and navbar background
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    if (!e.target.counted) {
+                        const counters = e.target.querySelectorAll('.counter');
+                        if (counters.length > 0) {
+                            e.target.counted = true;
+                            counters.forEach(animateCounter);
+                        }
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        function animateCounter(el) {
+            const target = parseFloat(el.getAttribute('data-target'));
+            const isDecimal = el.hasAttribute('data-decimals');
+            const hasPlus = el.hasAttribute('data-plus');
+            const duration = 1500;
+            const steps = 60;
+            const increment = target / steps;
+            let current = 0;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    el.textContent = (isDecimal ? target.toFixed(1) : Math.floor(target)) + (hasPlus ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + (hasPlus ? '+' : '');
+                }
+            }, duration / steps);
+        }
+        document.querySelectorAll('.animate-on-scroll, .social-proof').forEach(el => scrollObserver.observe(el));
+
+        const navObserver = new IntersectionObserver((entries) => {
+            const navbar = document.getElementById('navbar');
+            if (entries[0].isIntersecting) navbar.classList.remove('scrolled');
+            else navbar.classList.add('scrolled');
+        });
+        const dummy = document.createElement('div');
+        dummy.style.position = 'absolute'; dummy.style.top = '0'; dummy.style.height = '10px'; dummy.style.width = '100%'; dummy.style.pointerEvents = 'none';
+        document.body.prepend(dummy);
+        navObserver.observe(dummy);
+
+        // Hide floating buttons
+        const floatObserver = new IntersectionObserver(entries => {
+            const btns = document.querySelectorAll('.float-btn');
+            if(entries[0].isIntersecting) btns.forEach(b => b.classList.add('hidden'));
+            else btns.forEach(b => b.classList.remove('hidden'));
+        }, { rootMargin: '100px' });
+        const ft = document.getElementById('footer-trigger');
+        if(ft) floatObserver.observe(ft);
+
+        // Booking Modal Logic
+        const bookingState = { s: '', d: '', t: '', n: '', p: '' };
+        let cStep = 1;
+        const bModal = document.getElementById('bookingModal');
+        const bPts = document.querySelectorAll('.step');
+        const bDots = document.querySelectorAll('.dot');
+        const setStep = (n) => {
+            bPts.forEach((s, i) => s.classList.remove('active'));
+            bPts[n-1].classList.add('active');
+            if (n<=4) {
+                bDots.forEach((d, i) => d.style.background = i<n ? 'var(--gold)' : 'var(--glass-border)');
+                document.getElementById('stepDots').style.display = 'flex';
+                document.getElementById('bookBack').style.display = n>1 ? 'block' : 'none';
+            } else {
+                document.getElementById('stepDots').style.display = 'none';
+                document.getElementById('bookBack').style.display = 'none';
+                document.getElementById('closeModal').style.display = 'none';
+            }
+        };
+
+        const closeMod = () => { if(bModal) bModal.classList.remove('active'); document.body.style.overflow = ''; };
+        document.querySelectorAll('.open-modal').forEach(btn => btn.addEventListener('click', e => {
+            e.preventDefault();
+            bModal.classList.add('active'); document.body.style.overflow = 'hidden';
+            cStep = 1; setStep(cStep); renderCal();
+        }));
+        document.getElementById('closeModal').addEventListener('click', closeMod);
+        document.getElementById('closeFinalBtn').addEventListener('click', closeMod);
+        bModal.addEventListener('click', e => { if (e.target === bModal && cStep < 5) closeMod(); });
+        document.getElementById('bookBack').addEventListener('click', () => { if(cStep>1) setStep(--cStep); });
+
+        document.querySelectorAll('.service-btn').forEach(b => b.addEventListener('click', () => {
+            document.querySelectorAll('.service-btn').forEach(x => x.classList.remove('selected'));
+            b.classList.add('selected'); bookingState.s = b.getAttribute('data-service');
+            requestAnimationFrame(() => setStep(++cStep));
+        }));
+
+        let cMonth = new Date().getMonth(), cYear = new Date().getFullYear();
+        const renderCal = () => {
+            const grid = document.getElementById('calGrid');
+            grid.innerHTML = '';
+            const first = new Date(cYear, cMonth, 1).getDay();
+            const skip = first === 0 ? 6 : first - 1;
+            const days = new Date(cYear, cMonth+1, 0).getDate();
+            const names = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+            document.getElementById('monthYearDisplay').innerText = names[cMonth] + ' ' + cYear;
+            for(let i=0; i<skip; i++) grid.innerHTML += '<div style="height:40px;"></div>';
+            
+            const today = new Date(); today.setHours(0,0,0,0);
+            for(let d=1; d<=days; d++) {
+                const date = new Date(cYear, cMonth, d);
+                const el = document.createElement('div');
+                el.innerText = d;
+                el.style.cssText = 'height:40px; display:flex; align-items:center; justify-content:center; border-radius:8px; cursor:pointer; background:var(--glass-bg); transition:0.3s;';
+                if(date < today || date.getDay()===0) {
+                    el.style.opacity = '0.3'; el.style.pointerEvents = 'none'; el.style.cursor = 'default';
+                } else {
+                    if (date.getTime() === today.getTime()) el.style.border = '1px solid var(--gold)';
+                    el.addEventListener('click', () => {
+                        Array.from(grid.children).forEach(c => { c.style.background = 'var(--glass-bg)'; c.style.color = 'var(--white)'; });
+                        el.style.background = 'var(--gold)'; el.style.color = 'var(--navy)';
+                        bookingState.d = `${d.toString().padStart(2,'0')}/${(cMonth+1).toString().padStart(2,'0')}/${cYear}`;
+                        requestAnimationFrame(() => setStep(++cStep));
+                    });
+                }
+                grid.appendChild(el);
+            }
+        };
+        document.getElementById('prevMonth').addEventListener('click', () => { cMonth--; if(cMonth<0){cMonth=11;cYear--;} renderCal(); });
+        document.getElementById('nextMonth').addEventListener('click', () => { cMonth++; if(cMonth>11){cMonth=0;cYear++;} renderCal(); });
+
+        document.querySelectorAll('.time-btn').forEach(b => b.addEventListener('click', () => {
+            document.querySelectorAll('.time-btn').forEach(x => x.classList.remove('selected'));
+            b.classList.add('selected'); bookingState.t = b.getAttribute('data-time');
+            requestAnimationFrame(() => setStep(++cStep));
+        }));
+
+        document.getElementById('submitBooking').addEventListener('click', () => {
+            bookingState.n = document.getElementById('patientName').value.trim();
+            bookingState.p = document.getElementById('patientPhone').value.trim();
+            if(!bookingState.n || !bookingState.p) return alert("Nom et téléphone requis.");
+            setStep(++cStep);
+            const text = `Nouveau RDV: ${bookingState.n} - ${bookingState.s} - ${bookingState.d} - ${bookingState.t}`;
+            setTimeout(() => window.open('https://wa.me/212772153477?text=' + encodeURIComponent(text), '_blank'), 1000);
+        });
+
+        // Floating Review Widget Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const reviews = [
+                {n:"Sara B.", t:"Facettes", r:"Mon Hollywood smile est magnifique, très naturel."},
+                {n:"Yasmina F.", t:"Blanchiment", r:"Résultat bluffant en une seule séance !"},
+                {n:"Omar K.", t:"Implants", r:"Suivi parfait, je recommande à 100%."}
+            ];
+            const toast = document.createElement('div');
+            toast.className = 'review-toast';
+            toast.style.transition = 'opacity 0.3s ease';
+            document.body.appendChild(toast);
+            
+            let current = 0;
+            const updateToast = () => {
+                const rd = reviews[current];
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.innerHTML = `<div style="font-size:1.8rem; margin-top:-5px;" class="floating-emoji">💬</div><div><div style="color:var(--gold); font-size:0.9rem; margin-bottom:2px;">⭐⭐⭐⭐⭐</div><h4 style="color:var(--white);font-size:0.95rem;margin-bottom:4px;">${rd.n} <span style="color:var(--gray-light);font-size:0.8rem;font-weight:normal;">- ${rd.t}</span></h4><p style="color:var(--gray-light);font-size:0.85rem;line-height:1.4;margin:0;">"${rd.r}"</p></div>`;
+                    toast.style.opacity = '1';
+                    toast.classList.add('show');
+                }, 300);
+                current = (current + 1) % reviews.length;
+            };
+            
+            updateToast();
+            setInterval(updateToast, 4000);
+        });
+    </script>
+</body>
+</html>
