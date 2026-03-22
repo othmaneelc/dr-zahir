@@ -164,6 +164,30 @@
         .btn-dark:hover { background: var(--gold); color: var(--navy); }
         .mobile-hide { display: block; }
         @media (max-width: 1100px) { .mobile-hide { display: none; } }
+        /* Google Badge */
+        .google-badge { position: fixed; bottom: 110px; right: 30px; z-index: 90; background: var(--white); border-radius: 12px; padding: 10px 15px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: var(--transition); text-decoration: none; color: var(--navy); border: 1px solid rgba(0,0,0,0.05); }
+        .google-badge:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+        .google-badge-inner { display: flex; align-items: center; gap: 10px; }
+        .google-g { font-weight: 900; font-size: 1.4rem; color: #4285F4; } /* Simple colored G */
+        .google-badge-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .google-badge-text .stars { color: #f4b400; font-size: 0.9rem; }
+        .google-badge-text .rating { font-size: 0.8rem; font-weight: 600; font-family: var(--body); }
+        @media (max-width: 600px) { .google-badge { bottom: 180px; right: 20px; padding: 8px 12px; } }
+
+        /* Reviews Grid */
+        .reviews-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 40px; }
+        .review-card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: relative; transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
+        .review-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .review-card .stars { color: #F4B400; font-size: 1.1rem; margin-bottom: 10px; }
+        .review-card .name { font-weight: 700; color: var(--navy); margin-bottom: 8px; font-family: var(--body); }
+        .review-card .text { color: #5f6368; font-size: 0.95rem; line-height: 1.5; font-style: normal; }
+        .review-card .google-icon { position: absolute; bottom: 15px; right: 15px; width: 18px; opacity: 0.6; }
+        
+        @media (max-width: 992px) { .reviews-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { 
+            .reviews-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; gap: 15px; } 
+            .review-card { min-width: 85%; scroll-snap-align: center; flex-shrink: 0; }
+        }
     </style>
 </head>
 
@@ -176,7 +200,7 @@
                 <a href="index.html" class="active">Accueil</a>
                 <a href="services.html" class="">Services</a>
                 <a href="cabinet.html" class="">Le Cabinet</a>
-                <a href="avis.html" class="">Avis</a>
+                <a href="https://search.google.com/local/reviews?placeid=ChIJF8Q_O5Itpg0R1QY6EWGf8GU" target="_blank">Avis</a>
                 <a href="contact.html" class="">Contact</a>
             </div>
             <div class="nav-phone">
@@ -298,20 +322,46 @@
     <section class="section" style="background:var(--navy-light);">
         <div class="container">
             <div class="section-title animate-on-scroll"><h2>Avis Patients</h2><div class="gold-line"></div></div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px;">
-                <div style="background:var(--navy); padding:30px; border-radius:16px; border:1px solid var(--glass-border);" class="animate-on-scroll">
-                    <div style="color:var(--gold); margin-bottom:15px;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-style:italic; color:var(--gray-light); margin-bottom:15px;">"Super dentiste, à l'écoute et très pro ! Je le recommande vivement pour son approche rassurante."</p>
-                    <h5 style="color:var(--white);">- Sara B.</h5>
+            <div class="reviews-container">
+                <!-- Review 1 -->
+                <div class="review-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div>
+                        <div class="name">Wadie Norri</div>
+                        <p class="text">"After 4 dentists and a lot of bad mistakes done on my teeth, I can finally say I found a great dentist! No flaws, rightly done work, very clean and modern procedures, and reasonable prices."</p>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_\"G\"_logo.svg" class="google-icon" alt="Google">
                 </div>
-                <div style="background:var(--navy); padding:30px; border-radius:16px; border:1px solid var(--glass-border);" class="animate-on-scroll">
-                    <div style="color:var(--gold); margin-bottom:15px;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-style:italic; color:var(--gray-light); margin-bottom:15px;">"Des résultats incroyables dès la première séance. L'hygiène est irréprochable et l'équipe au top."</p>
-                    <h5 style="color:var(--white);">- Omar K.</h5>
+                <!-- Review 2 -->
+                <div class="review-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div>
+                        <div class="name">Doae Motassim</div>
+                        <p class="text">"Avec une tolérance à la douleur de zéro, je ne regrette absolument pas ma visite. Très minutieux et je n'ai littéralement rien senti. Équipe très accueillante. Je recommande à 1000%."</p>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_\"G\"_logo.svg" class="google-icon" alt="Google">
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div>
+                        <div class="name">Ibtissam Ibrahimi</div>
+                        <p class="text">"Un médecin professionnel et compétent, toujours disponible et à l'écoute. Les assistantes sont très aimables. Un travail de qualité et les prix sont raisonnables. Je recommande vivement."</p>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_\"G\"_logo.svg" class="google-icon" alt="Google">
+                </div>
+                <!-- Review 4 -->
+                <div class="review-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div>
+                        <div class="name">Sabrine Bensouda</div>
+                        <p class="text">"Compétent, à l'écoute et rassurant. Je recommande."</p>
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_\"G\"_logo.svg" class="google-icon" alt="Google">
                 </div>
             </div>
             <div style="text-align:center; margin-top:50px;" class="animate-on-scroll">
-                <a href="avis.html" style="background:transparent; border:2px solid var(--gold); color:var(--gold); padding:14px 36px; border-radius:30px; font-weight:600; font-size:1rem; transition:0.3s; display:inline-block;" onmouseover="this.style.background='var(--gold)'; this.style.color='var(--navy)';" onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';">
+                <a href="https://g.page/r/ChIJF8Q_O5Itpg0R1QY6EWGf8GU/review" target="_blank" style="background:transparent; border:2px solid var(--gold); color:var(--gold); padding:14px 36px; border-radius:30px; font-weight:600; font-size:1rem; transition:0.3s; display:inline-block;" onmouseover="this.style.background='var(--gold)'; this.style.color='var(--navy)';" onmouseout="this.style.background='transparent'; this.style.color='var(--gold)';">
                     Voir tous les avis →
                 </a>
             </div>
@@ -355,7 +405,7 @@
                 <div class="footer-links">
                     <a href="services.html">Nos Services</a>
                     <a href="cabinet.html">Le Cabinet</a>
-                    <a href="avis.html">Avis Patients</a>
+                    <a href="https://search.google.com/local/reviews?placeid=ChIJF8Q_O5Itpg0R1QY6EWGf8GU" target="_blank">Avis Patients</a>
                     <a href="contact.html">Contact</a>
                 </div>
             </div>
@@ -377,6 +427,16 @@
     
     <a href="tel:+212772153477" class="float-btn float-phone" aria-label="Appeler">📞</a>
     <a href="https://wa.me/212772153477" class="float-btn float-wa" target="_blank" aria-label="WhatsApp" style="text-decoration:none; display:flex; align-items:center; justify-content:center;">💬</a>
+
+    <a href="https://search.google.com/local/reviews?placeid=ChIJF8Q_O5Itpg0R1QY6EWGf8GU" target="_blank" class="google-badge">
+        <div class="google-badge-inner">
+            <span class="google-g" style="font-family: Arial, sans-serif; background: linear-gradient(to bottom right, #4285F4, #34A853, #FBBC05, #EA4335); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">G</span>
+            <div class="google-badge-text">
+                <span class="stars">⭐⭐⭐⭐⭐</span>
+                <span class="rating">5.0 · 18 avis Google</span>
+            </div>
+        </div>
+    </a>
 
     <div class="modal" id="bookingModal">
         <div class="booking-box">
